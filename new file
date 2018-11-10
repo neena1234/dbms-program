@@ -1,0 +1,63 @@
+st=# create table student(stid int,name varchar(20),branch varchar(20));
+CREATE TABLE
+st=# create table studnt(stid int,name varchar(20),branch varchar(20),primary key(stid));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "studnt_pkey" for table "studnt"
+CREATE TABLE
+st=# insert into studnt values(1,'rini','mca');
+INSERT 0 1
+st=# insert into studnt values(2,'neena','mba');
+INSERT 0 1
+st=# insert into studnt values(3,'swetha','mba');
+INSERT 0 1
+st=# insert into studnt values(4,'swathi','mcj');
+INSERT 0 1
+st=# insert into studnt values(5,'ambika','mca');
+INSERT 0 1
+st=# alter table studnt add class varchar(20);
+ALTER TABLE
+st=# select * from studnt
+st-# 
+st-# b;
+ stid |  name  | branch | class 
+------+--------+--------+-------
+    1 | rini   | mca    | 
+    2 | neena  | mba    | 
+    3 | swetha | mba    | 
+    4 | swathi | mcj    | 
+    5 | ambika | mca    | 
+(5 rows)
+
+st=# delete from studnt where stid=5;
+DELETE 1
+st=# select * from studnt
+b;
+ stid |  name  | branch | class 
+------+--------+--------+-------
+    1 | rini   | mca    | 
+    2 | neena  | mba    | 
+    3 | swetha | mba    | 
+    4 | swathi | mcj    | 
+(4 rows)
+
+st=# delete from studnt where column name=branch;
+ERROR:  syntax error at or near "column"
+LINE 1: delete from studnt where column name=branch;
+                                 ^
+st=# alter table studnt drop branch;
+ALTER TABLE
+st=# select * from studnt
+b;
+ stid |  name  | class 
+------+--------+-------
+    1 | rini   | 
+    2 | neena  | 
+    3 | swetha | 
+    4 | swathi | 
+(4 rows)
+
+st=# delete from studnt;
+DELETE 4
+st=# drop table studnt;
+DROP TABLE
+st=# 
+
