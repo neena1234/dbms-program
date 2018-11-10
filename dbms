@@ -1,0 +1,73 @@
+albin=# create table department(deptno int primary key,dname varchar(20),loc varchar(20));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "department_pkey" for table "department"
+CREATE TABLE
+albin=# insert into department values(101,'mca','peravoor');
+INSERT 0 1
+albin=# insert into department values(101,'bcom','iritty');
+ERROR:  duplicate key value violates unique constraint "department_pkey"
+albin=# drop table department;
+DROP TABLE
+albin=# create table department(deptno int primary key,dname varchar(20),loc varchar(20));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "department_pkey" for table "department"
+CREATE TABLE
+albin=# insert into department values(101,'mca','peravoor');INSERT 0 1
+albin=# insert into department values(102,'bcom','iritty');
+INSERT 0 1
+albin=# insert into department values(103,'bba','edoor');
+INSERT 0 1
+albin=# insert into department values(104,'mba','kannur');
+INSERT 0 1
+albin=# insert into department values(105,'mcom','kozhikode');
+INSERT 0 1
+albin=# create table employee(empno int primary key,ename varchar(20),job varchar(20),deptno int references department,sal int);
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "employee_pkey" for table "employee"
+CREATE TABLE
+albin=# insert into employee values(1,'ashin','office',101,20000);
+INSERT 0 1
+albin=# insert into employee values(2,'ashin','manager',101,25000);
+INSERT 0 1
+albin=# insert into employee values(3,'aswathi','lab',101,25000);
+INSERT 0 1
+albin=# insert into employee values(4,'athira','clerk',102,45000);
+INSERT 0 1
+albin=# insert into employee values(5,'akhil','office',102,5000);
+INSERT 0 1
+albin=# select ename,job from employee;
+  ename  |   job   
+---------+---------
+ ashin   | office
+ ashin   | manager
+ aswathi | lab
+ athira  | clerk
+ akhil   | office
+(5 rows)
+
+albin=# select * from employee order by sal asc;
+ empno |  ename  |   job   | deptno |  sal  
+-------+---------+---------+--------+-------
+     5 | akhil   | office  |    102 |  5000
+     1 | ashin   | office  |    101 | 20000
+     2 | ashin   | manager |    101 | 25000
+     3 | aswathi | lab     |    101 | 25000
+     4 | athira  | clerk   |    102 | 45000
+(5 rows)
+
+albin=# select distinct deptno from employee;
+ deptno 
+--------
+    101
+    102
+(2 rows)
+
+albin=# select ename,dname from employee,department where employee.deptno=department.deptno;
+  ename  | dname 
+---------+-------
+ ashin   | mca
+ ashin   | mca
+ aswathi | mca
+ athira  | bcom
+ akhil   | bcom
+(5 rows)
+
+albin=# 
+
