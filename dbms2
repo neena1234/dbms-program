@@ -1,0 +1,38 @@
+albin=# create table student(rollno int primary key,name varchar(20),branch varchar(20));
+NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "student_pkey" for table "student"
+CREATE TABLE
+albin=# insert into student values(101,'ashin','mca');INSERT 0 1
+albin=# insert into student values(102,'athira','mba');
+INSERT 0 1
+albin=# insert into student values(103,'aswathi','mca');
+INSERT 0 1
+albin=# insert into student values(104,'anit','ma');
+INSERT 0 1
+albin=# insert into student values(105,'ashna','bcom');
+INSERT 0 1
+albin=# alter table student add class varchar(20);
+ALTER TABLE
+albin=# delete from student where rollno='102';
+DELETE 1
+albin=# alter table student drop branch;
+ALTER TABLE
+albin=# select * from student;
+ rollno |  name   | class 
+--------+---------+-------
+    101 | ashin   | 
+    103 | aswathi | 
+    104 | anit    | 
+    105 | ashna   | 
+(4 rows)
+
+albin=# delete from student;
+DELETE 4
+albin=# select * from student;
+ rollno | name | class 
+--------+------+-------
+(0 rows)
+
+albin=# drop table student;
+DROP TABLE
+albin=# 
+
